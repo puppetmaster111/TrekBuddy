@@ -1,0 +1,154 @@
+
+
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color:  #1e3d59;
+  
+  color: rgb(244, 242, 242);
+  padding: 15px 15px;
+  flex-wrap: wrap; /* allows wrapping on smaller screens */
+}
+
+
+
+/* Contact Section */
+.contact-section {
+  background-color: #fff;
+  padding: 60px 40px;
+}
+
+.contact-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+/* Contact Info */
+.contact-info {
+  flex: 1 1 350px;
+}
+
+.contact-info h3 {
+  color: #1e3d59;
+  margin-bottom: 15px;
+}
+
+.contact-info p {
+  font-size: 1.1em;
+  margin-bottom: 10px;
+}
+
+.contact-info i {
+  color: #3ba776;
+  margin-right: 10px;
+}
+
+/* WhatsApp Button Highlight */
+.whatsapp-btn {
+  display: inline-block;
+  margin-top: 15px;
+  background-color: #25D366;
+  color: white;
+  padding: 12px 25px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-size: 1.1em;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.whatsapp-btn:hover {
+  background-color: #1ebd5a;
+  transform: scale(1.05);
+}
+
+.whatsapp-btn i {
+  margin-right: 8px;
+  color: black;
+}
+
+/* Contact Form */
+.contact-form {
+  flex: 1 1 400px;
+}
+
+.contact-form h3 {
+  color: #1e3d59;
+  margin-bottom: 15px;
+}
+
+.contact-form form {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-form input,
+.contact-form textarea {
+  margin-bottom: 15px;
+  padding: 12px;
+  font-size: 1em;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.contact-form textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.contact-form button {
+  background-color: #3ba776;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.contact-form button:hover {
+  background-color: #1e3d59;
+}
+
+/* Social Icons */
+.social-icons {
+  margin-top: 20px;
+}
+
+.social-icons i {
+  font-size: 22px;
+  margin-right: 15px;
+  color: #1e3d59;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.social-icons i:hover {
+  color: #3ba776;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  background-color: #1e3d59;
+  color: white;
+  padding: 15px;
+  margin-top: 40px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .contact-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .whatsapp-btn {
+    display: inline-block;
+    margin: 20px auto;
+  }
+}
