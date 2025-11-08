@@ -1,0 +1,290 @@
+/* Booking Section */
+.booking-section {
+  background-color: #f8f9fa;
+  padding: 40px 20px;
+  min-height: calc(100vh - 200px);
+}
+
+.booking-container {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* Trip Info Card */
+.trip-info-card {
+  background: linear-gradient(135deg, #1e3d59 0%, #2a5a7a 100%);
+  color: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.trip-info-card h2 {
+  margin: 0 0 20px 0;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.trip-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.trip-details p {
+  margin: 0;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.trip-details i {
+  font-size: 1.2rem;
+  color: #3ba776;
+}
+
+/* Booking Form Card */
+.booking-form-card {
+  background: white;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.booking-form-card h3 {
+  color: #1e3d59;
+  margin: 0 0 30px 0;
+  font-size: 1.8rem;
+  font-weight: 600;
+  border-bottom: 2px solid #3ba776;
+  padding-bottom: 15px;
+}
+
+/* Form Groups */
+.form-group {
+  margin-bottom: 25px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: #1e3d59;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.form-group label i {
+  color: #3ba776;
+  margin-right: 8px;
+}
+
+.required {
+  color: #e74c3c;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #3ba776;
+  box-shadow: 0 0 0 3px rgba(59, 167, 118, 0.1);
+}
+
+.form-group input[type="date"] {
+  cursor: pointer;
+}
+
+.form-group input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.form-group input[type="number"]::-webkit-outer-spin-button,
+.form-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Price Summary */
+.price-summary {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  margin: 30px 0;
+  border: 2px solid #e0e0e0;
+}
+
+.price-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  font-size: 1rem;
+  color: #333;
+}
+
+.price-row.total {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 2px solid #1e3d59;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1e3d59;
+}
+
+.price-note {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid #ddd;
+  color: #666;
+}
+
+.price-note small {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.price-note i {
+  color: #3ba776;
+}
+
+/* Submit Button */
+.submit-btn {
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(135deg, #3ba776 0%, #2d8656 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.submit-btn:hover {
+  background: linear-gradient(135deg, #2d8656 0%, #1e6b47 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(59, 167, 118, 0.3);
+}
+
+.submit-btn:active {
+  transform: translateY(0);
+}
+
+.submit-btn i {
+  font-size: 1.2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .booking-section {
+    padding: 30px 15px;
+  }
+
+  .booking-container {
+    gap: 20px;
+  }
+
+  .trip-info-card {
+    padding: 20px;
+  }
+
+  .trip-info-card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
+
+  .trip-details {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .trip-details p {
+    font-size: 1rem;
+  }
+
+  .booking-form-card {
+    padding: 25px 20px;
+  }
+
+  .booking-form-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    padding: 14px;
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+
+  .price-summary {
+    padding: 15px;
+  }
+
+  .price-row.total {
+    font-size: 1.3rem;
+  }
+
+  .submit-btn {
+    padding: 14px;
+    font-size: 1.1rem;
+    min-height: 50px;
+  }
+}
+
+@media (max-width: 480px) {
+  .booking-section {
+    padding: 20px 10px;
+  }
+
+  .trip-info-card {
+    padding: 15px;
+  }
+
+  .trip-info-card h2 {
+    font-size: 1.3rem;
+  }
+
+  .booking-form-card {
+    padding: 20px 15px;
+  }
+
+  .booking-form-card h3 {
+    font-size: 1.3rem;
+  }
+
+  .price-row.total {
+    font-size: 1.2rem;
+  }
+}
+
