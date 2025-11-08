@@ -24,13 +24,13 @@ html{
   
   color: rgb(244, 242, 242);
   padding: 15px 15px;
-  flex-wrap: wrap; /* allows wrapping on smaller screens */
 }
 
 .logo {
   display: flex;
   align-items: center;
   gap: 10px;
+  flex-shrink: 0;
 }
 
 .logo img {
@@ -39,16 +39,32 @@ html{
   border-radius: 50%;
 }
 
+.logo h1 {
+  font-size: 1.5rem;
+  white-space: nowrap;
+}
+
 
 .navbar {
   display: flex;
   gap: 20px;
+  align-items: center;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+}
+
+.navbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
 }
 
 .navbar a {
   color: white;
   text-decoration: none;
   font-weight: 500;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .navbar a:hover {
@@ -56,54 +72,62 @@ html{
 }
 
 .hero {
-    display: flex;
+  display: flex;
+  flex-direction: column;
   position: relative;
-    background: url('images/mountain1.jpg') center/cover no-repeat;
+  background: url('images/mountain1.jpg') center/cover no-repeat;
   color: rgb(95, 86, 168);
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+  padding: 60px 20px;
+}
 
- text-align: center;
- align-items: center;
-
-  padding: 240px 20px;
-  flex-wrap: wrap;
-  
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1;
 }
 
 .hero h2 {
-    display: flex;
-   font-size: 2.5rem;
-   font-weight: 800;
-   text-align: center;
-    position: absolute;
-  top: 20px;           /* distance from top */
-  left: 50%;
-  transform: translateX(-50%);
-   
-   
+  font-size: 2.5rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 15px;
+  position: relative;
+  z-index: 2;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .hero p {
-    display: flex;
   font-size: 1rem;
-  margin: 25px 0;
-    position: absolute;
-  top: 65px;           /* distance from top */
-  left: 50%;
-  transform: translateX(-50%);
+  margin: 15px 0 25px 0;
+  position: relative;
+  z-index: 2;
   font-weight: 400;
+  color: white;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  max-width: 600px;
 }
 
 .hero-btn {
   background-color: #3ba776;
   color: white;
-  padding: 10px 25px;
+  padding: 12px 30px;
   border-radius: 25px;
   text-decoration: none;
   font-weight: bold;
-   position: absolute;
-  top: 150px;           /* distance from top */
-  left: 50%;
-  transform: translateX(-50%);
+  position: relative;
+  z-index: 2;
+  display: inline-block;
+  transition: background-color 0.3s, transform 0.2s;
 }
 
 .hero-btn:hover {
@@ -329,35 +353,88 @@ html{
     grid-template-columns: repeat(1,1fr);
   }
  
-  .site-header{
-   z-index: 1000;
-  position: sticky;
-  top: 0%; 
-    padding: 10px 20px;
+  .site-header {
+    z-index: 1000;
+    position: sticky;
+    top: 0; 
+    padding: 8px 10px;
+    flex-wrap: nowrap;
+    overflow: hidden;
   }
-  .site-header h1{
-    display: none;
-  }
- .navbar{
-  justify-content: center;
- 
 
- }
- .hero h2{
-  font-size: 1.5rem;
-  font-weight: 800;
- }
- .hero p{
-  font-size: 0.87rem;
-  font-weight: 400;
- }
- .hero-btn{
-  top:165px;
- }
- .hero{
-  padding: 240px 20px;
- }
- 
+  .logo {
+    gap: 6px;
+  }
+
+  .logo img {
+    width: 35px;
+    height: 35px;
+  }
+
+  .logo h1 {
+    font-size: 1.1rem;
+    display: block;
+  }
+
+  .navbar {
+    gap: 8px;
+    font-size: 0.85rem;
+    justify-content: flex-end;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .navbar a {
+    font-size: 0.75rem;
+    padding: 4px 6px;
+  }
+
+  .navbar .whatsapp {
+    padding: 4px 6px !important;
+    display: inline-flex !important;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+  }
+
+  .navbar .whatsapp i {
+    font-size: 18px !important;
+  }
+
+  .navbar .whatsapp h3 {
+    font-size: 0.65rem !important;
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  .navbar .whatsapp a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .hero {
+    min-height: 300px;
+    padding: 40px 15px;
+  }
+
+  .hero h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+    padding: 0 10px;
+  }
+
+  .hero p {
+    font-size: 0.9rem;
+    font-weight: 400;
+    margin: 10px 0 20px 0;
+    padding: 0 10px;
+  }
+
+  .hero-btn {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
 }
 
 
@@ -439,6 +516,64 @@ html{
   color: #3ba776;
 }
 
+/* Extra small devices */
+@media (max-width: 480px) {
+  .site-header {
+    padding: 6px 8px;
+  }
+
+  .logo img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .logo h1 {
+    font-size: 0.95rem;
+    display:none;
+  }
+
+  .navbar {
+    gap: 4px;
+  }
+
+  .navbar a {
+    font-size: 0.7rem;
+    padding: 3px 4px;
+  }
+
+  .navbar .whatsapp {
+    padding: 3px 4px !important;
+  }
+
+  .navbar .whatsapp i {
+    font-size: 16px !important;
+  }
+
+  .navbar .whatsapp h3 {
+    font-size: 0.6rem !important;
+  }
+
+  .hero {
+    min-height: 250px;
+    padding: 30px 10px;
+  }
+
+  .hero h2 {
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+  }
+
+  .hero p {
+    font-size: 0.85rem;
+    margin: 8px 0 15px 0;
+  }
+
+  .hero-btn {
+    padding: 8px 18px;
+    font-size: 0.85rem;
+  }
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .about-container {
@@ -448,14 +583,6 @@ html{
 
   .about-image {
     order: -1;
-  }
-
-  .hero {
-    padding: 80px 20px;
-  }
-
-  .hero h2 {
-    font-size: 2em;
   }
 }
 
