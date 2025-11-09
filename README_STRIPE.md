@@ -113,8 +113,7 @@ For better security, use environment variables for your Stripe keys:
 
 1. Create a `.env` file:
 ```
-STRIPE_SECRET_KEY=sk_test_51SRNSDIph1qmQeBAnIYib62qb3RUHY93PsqnmvtLGnoLW9vAfg89LVE9ZyJrATT8BKFPmJeEnZjbrFgU59mMt30l00OURgJnSV
-PORT=3000
+
 ```
 
 2. Install `dotenv`:
