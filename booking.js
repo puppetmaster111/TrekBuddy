@@ -1,3 +1,12 @@
+// Stripe Configuration
+const STRIPE_PUBLISHABLE_KEY = 'pk_test_51SRNSDIph1qmQeBANLXEdKH0msZINJNErqxvfAmjwNK5ELgxtHwzDVmpc7iwAjY51E9xaQKaFO56Gk16jBQCtQrI00mLwEZneU';
+const stripe = Stripe(STRIPE_PUBLISHABLE_KEY);
+
+// Backend API endpoint - Update this to your server URL
+const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+  ? 'http://localhost:3000' 
+  : 'http://www.trekbuddy.fun'; // Update this with your deployed server URL
+
 // Trip data mapping
 const tripData = {
   'annapurna-base-camp': {
@@ -88,37 +97,76 @@ function calculatePrice() {
   document.getElementById('payable-arrival').textContent = `$${payableArrival.toFixed(2)}`;
 }
 
-// Handle form submission
-function handleSubmit(event) {
+// Handle form submission and create Stripe checkout session
+async function handleSubmit(event) {
   event.preventDefault();
   
-  // Get form data
-  const formData = {
-    tripName: document.getElementById('trip-name').textContent,
-    departureDate: document.getElementById('departure-date').value,
-    travelers: document.getElementById('travelers').value,
-    fullName: document.getElementById('full-name').value,
-    email: document.getElementById('email').value,
-    phone: document.getElementById('phone').value,
-    specialRequests: document.getElementById('special-requests').value,
-    totalCost: document.getElementById('total-cost').textContent,
-    payableNow: document.getElementById('payable-now').textContent,
-    payableArrival: document.getElementById('payable-arrival').textContent
-  };
+  // Disable submit button to prevent multiple clicks
+  const submitBtn = event.target.querySelector('.submit-btn');
+  const originalText = submitBtn.innerHTML;
+  submitBtn.disabled = true;
+  submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Processing...';
   
-  // Here you would typically send the data to a server
-  // For now, we'll show an alert and could redirect to a confirmation page
-  console.log('Booking Data:', formData);
-  
-  // Show confirmation message
-  alert(`Thank you ${formData.fullName}!\n\nYour booking for ${formData.tripName} has been submitted.\n\nDeparture Date: ${formData.departureDate}\nTravelers: ${formData.travelers}\n\nPayment Breakdown:\nTotal Cost: ${formData.totalCost}\nPayable Now (25%): ${formData.payableNow}\nPayable on Arrival (75%): ${formData.payableArrival}\n\nWe will contact you shortly at ${formData.email} to confirm your booking and process the deposit payment.`);
-  
-  // Optionally redirect to home page
-  // window.location.href = 'index.html';
-  
-  // Or reset the form
-  // document.getElementById('booking-form').reset();
-  // calculatePrice();
+  try {
+    // Get form data
+    const formData = {
+      tripName: document.getElementById('trip-name').textContent,
+      departureDate: document.getElementById('departure-date').value,
+      travelers: parseInt(document.getElementById('travelers').value),
+      fullName: document.getElementById('full-name').value,
+      email: document.getElementById('email').value,
+      phone: document.getElementById('phone').value,
+      specialRequests: document.getElementById('special-requests').value,
+      totalCost: parseFloat(document.getElementById('total-cost').textContent.replace('$', '')),
+      payableNow: parseFloat(document.getElementById('payable-now').textContent.replace('$', '')),
+      payableArrival: parseFloat(document.getElementById('payable-arrival').textContent.replace('$', ''))
+    };
+    
+    // Get trip ID from URL for cancel redirect
+    const tripId = getTripIdFromURL();
+    
+    // Create checkout session via backend
+    const response = await fetch(`http://www.trekbuddy.fun/create-checkout-session`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        amount: Math.round(formData.payableNow * 100), // Convert to cents
+        tripName: formData.tripName,
+        departureDate: formData.departureDate,
+        travelers: formData.travelers,
+        customerName: formData.fullName,
+        customerEmail: formData.email,
+        customerPhone: formData.phone,
+        specialRequests: formData.specialRequests,
+        totalCost: formData.totalCost,
+        payableArrival: formData.payableArrival,
+        tripId: tripId
+      })
+    });
+    
+    if (!response.ok) {
+      throw new Error('Failed to create checkout session');
+    }
+    
+    const session = await response.json();
+    
+    // Redirect to Stripe Checkout
+    const result = await stripe.redirectToCheckout({
+      sessionId: session.id
+    });
+    
+    if (result.error) {
+      throw new Error(result.error.message);
+    }
+    
+  } catch (error) {
+    console.error('Error:', error);
+    alert('There was an error processing your payment. Please try again.\n\nError: ' + error.message);
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = originalText;
+  }
 }
 
 // Initialize when page loads

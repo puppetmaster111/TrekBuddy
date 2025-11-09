@@ -111,11 +111,13 @@
 
 .form-group input[type="number"] {
   -moz-appearance: textfield;
+  appearance: textfield;
 }
 
 .form-group input[type="number"]::-webkit-outer-spin-button,
 .form-group input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
+  appearance: none;
   margin: 0;
 }
 
@@ -244,8 +246,27 @@
   transform: translateY(0);
 }
 
+.submit-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
 .submit-btn i {
   font-size: 1.2rem;
+}
+
+.submit-btn .fa-spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* Responsive Design */
