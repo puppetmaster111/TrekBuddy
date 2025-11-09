@@ -76,10 +76,16 @@ function calculatePrice() {
   // Formula: basePrice × (1 + 0.98 × (travelers - 1))
   const totalCost = basePrice * (1 + 0.98 * (travelers - 1));
   
+  // Calculate payment breakdown: 25% payable now, 75% on arrival
+  const payableNow = totalCost * 0.25;
+  const payableArrival = totalCost * 0.75;
+  
   // Update display
   document.getElementById('display-base-price').textContent = `$${basePrice.toFixed(2)}`;
   document.getElementById('display-travelers').textContent = travelers;
   document.getElementById('total-cost').textContent = `$${totalCost.toFixed(2)}`;
+  document.getElementById('payable-now').textContent = `$${payableNow.toFixed(2)}`;
+  document.getElementById('payable-arrival').textContent = `$${payableArrival.toFixed(2)}`;
 }
 
 // Handle form submission
@@ -95,7 +101,9 @@ function handleSubmit(event) {
     email: document.getElementById('email').value,
     phone: document.getElementById('phone').value,
     specialRequests: document.getElementById('special-requests').value,
-    totalCost: document.getElementById('total-cost').textContent
+    totalCost: document.getElementById('total-cost').textContent,
+    payableNow: document.getElementById('payable-now').textContent,
+    payableArrival: document.getElementById('payable-arrival').textContent
   };
   
   // Here you would typically send the data to a server
@@ -103,7 +111,7 @@ function handleSubmit(event) {
   console.log('Booking Data:', formData);
   
   // Show confirmation message
-  alert(`Thank you ${formData.fullName}!\n\nYour booking for ${formData.tripName} has been submitted.\n\nDeparture Date: ${formData.departureDate}\nTravelers: ${formData.travelers}\nTotal Cost: ${formData.totalCost}\n\nWe will contact you shortly at ${formData.email} to confirm your booking.`);
+  alert(`Thank you ${formData.fullName}!\n\nYour booking for ${formData.tripName} has been submitted.\n\nDeparture Date: ${formData.departureDate}\nTravelers: ${formData.travelers}\n\nPayment Breakdown:\nTotal Cost: ${formData.totalCost}\nPayable Now (25%): ${formData.payableNow}\nPayable on Arrival (75%): ${formData.payableArrival}\n\nWe will contact you shortly at ${formData.email} to confirm your booking and process the deposit payment.`);
   
   // Optionally redirect to home page
   // window.location.href = 'index.html';

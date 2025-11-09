@@ -104,14 +104,27 @@
               <span>Total Cost:</span>
               <span id="total-cost">$0</span>
             </div>
+            
+            <!-- Payment Breakdown -->
+            <div class="payment-breakdown">
+              <div class="price-row payment-now">
+                <span><i class="fa-solid fa-credit-card"></i> Payable Now (25%):</span>
+                <span id="payable-now">$0</span>
+              </div>
+              <div class="price-row payment-later">
+                <span><i class="fa-solid fa-calendar-check"></i> Payable on Arrival (75%):</span>
+                <span id="payable-arrival">$0</span>
+              </div>
+            </div>
+            
             <div class="price-note">
-              <small><i class="fa-solid fa-info-circle"></i> First traveler at base price, each additional traveler adds 98% of base price</small>
+              <small><i class="fa-solid fa-info-circle"></i> Group discount of 2% for each additional traveler</small>
             </div>
           </div>
 
           <!-- Submit Button -->
           <button type="submit" class="submit-btn">
-            <i class="fa-solid fa-credit-card"></i> Complete Booking
+            <i class="fa-solid fa-credit-card"></i> Proceed to Payment
           </button>
         </form>
       </div>
