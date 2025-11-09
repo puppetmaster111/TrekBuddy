@@ -126,7 +126,7 @@ async function handleSubmit(event) {
     const tripId = getTripIdFromURL();
     
     // Create checkout session via backend
-    const response = await fetch(`http://www.trekbuddy.fun/create-checkout-session`, {
+    const response = await fetch(`https://www.trekbuddy.fun/create-checkout-session`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
