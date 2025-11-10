@@ -36,7 +36,7 @@ app.post('/create-checkout-session', async (req, res) => {
     } = req.body;
 
     // Get origin from request headers for dynamic URL generation
-    const origin = req.headers.origin || req.headers.referer?.split('/').slice(0, 3).join('/') || 'https://www.trekbuddy.fun';
+    const origin = req.headers.origin || req.headers.referer?.split('/').slice(0, 3).join('/') || 'https://trekbuddy.onrender.com';
 
     // Create Stripe checkout session
     const session = await stripe.checkout.sessions.create({

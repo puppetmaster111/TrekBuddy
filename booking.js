@@ -3,7 +3,7 @@ const STRIPE_PUBLISHABLE_KEY = 'pk_test_51SRNSDIph1qmQeBANLXEdKH0msZINJNErqxvfAm
 const stripe = Stripe(STRIPE_PUBLISHABLE_KEY);
 
 // Backend API endpoint - Update this to your server URL
-const API_BASE_URL = 'https://www.trekbuddy.fun'; // Update this with your deployed server URL
+const API_BASE_URL = 'https://trekbuddy.onrender.com'; // Update this with your deployed server URL
 
 // Trip data mapping
 const tripData = {
@@ -124,7 +124,7 @@ async function handleSubmit(event) {
     const tripId = getTripIdFromURL();
     
     // Create checkout session via backend
-    const response = await fetch(`https://www.trekbuddy.fun/create-checkout-session`, {
+    const response = await fetch(`https://trekbuddy.onrender.com/create-checkout-session`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
